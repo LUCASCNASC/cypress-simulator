@@ -2,11 +2,16 @@ describe('Cypress Simulator', () => {
 
   beforeEach(() => {
 
-    cy.visit('./src/index.html')
+    cy.visit("./src/index.html?skipCaptcha=true", {
+  onBeforeLoad(win) {
+    win.localStorage.setItem("cookieConsent", "accepted")
+  } //passar o Captcha=true e aceitar os cookies("cookieConsent", "accepted")
+})
+    cy.contains("button", "Login").click()
 
   })
 
-  it('sucess', () => {
+  it.only('sucess', () => {
     
   })
 
