@@ -1,14 +1,12 @@
-describe('Cypress Simulator', () => {
-
+describe("Cypress Simulator - A11y Checks", () => {
   beforeEach(() => {
-
     cy.visit("./src/index.html?skipCaptcha=true", {
       onBeforeLoad(win) {
         win.localStorage.setItem("cookieConsent", "accepted")
-      } //passar o Captcha=true e aceitar os cookies("cookieConsent", "accepted")
+      }
     })
     cy.contains("button", "Login").click()
-
+    cy.injectAxe()
   })
 
   it("sucessfully simulates a Cypress command (e.g., cy.log('Yay!'))", () => {
@@ -62,25 +60,6 @@ describe('Cypress Simulator', () => {
     
   })
 
-  it('it asks for help and gets common Cypress commands and examples with a link to the docs', () => {
-
-    cy.get("textarea[placeholder='Write your Cypress code here...']")
-      .type("help")
-    cy.contains("button", "Run").click()
-
-    cy.get('#outputArea', { timeout: 10000 })
-      .should("contain", "Common Cypress commands and examples:")
-      .and("contain", "For more commands and details, visit the official Cypress API documentation.")
-      .and("be.visible")
-
-      cy.contains("#outputArea a", "official Cypress API documentation")
-        .should("have.attr", "href", "https://docs.cypress.io/api/table-of-contents")
-        .and("have.attr", "target", "_blank")
-        .and("have.attr", "rel", "noopener noreferrer")
-        .and("be.visible")
-    
-  })
-
   it("it maximizes and minimizes a simulation result.", () => {
 
     cy.get("textarea[placeholder='Write your Cypress code here...']")
@@ -103,5 +82,4 @@ describe('Cypress Simulator', () => {
       .should("be.visible")
     
   })
-
 })
