@@ -9,19 +9,6 @@ describe("Cypress Simulator - A11y Checks", () => {
     cy.injectAxe()
   })
 
-  Cypress._.times(100, () =>{
-
-    cy.run("cy.log('Yay!')")
-
-    cy.get('#outputArea', { timeout: 10000 })
-      .should("contain", "Success:")
-      .and("contain", "cy.log('Yay!') // Logged message 'Yay!'")
-      .and("be.visible")
-
-      cy.checkA11y(".success")
-
-  } )
-
   it("sucessfully simulates a Cypress command (e.g., cy.log('Yay!'))", () => {
     
     cy.run("cy.log('Yay!')")
