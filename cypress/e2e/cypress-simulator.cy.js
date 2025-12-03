@@ -3,7 +3,7 @@ describe('Cypress Simulator', () => {
   beforeEach(() => {
 
     cy.login()
-    cy.visit("./src/index.html?skipCaptcha=true", {
+    cy.visit("./src/index.html?skipCaptcha=true?chancesOfError=0", {
       onBeforeLoad(win) {
         win.localStorage.setItem("cookieConsent", "accepted")
       } //passar o Captcha=true e aceitar os cookies("cookieConsent", "accepted")
